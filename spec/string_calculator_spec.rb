@@ -34,10 +34,10 @@ describe StringCalculator do
   end
 
   it "allows a newline delimiter" do
-      "1\n2\n3".should be_calculated_as(6)
+    "1\n2\n3".should be_calculated_as(6)
   end
 
   it "allows a mixture of comma and newline delimiters" do
-      "1,2\n3".should be_calculated_as(6)
+    "1,2\n3".should be_calculated_as(6)
   end
 end
