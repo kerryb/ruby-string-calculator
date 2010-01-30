@@ -19,5 +19,11 @@ def extract_numbers input, delimiter
 end
 
 def sum numbers
+  reject_negatives numbers
   numbers.inject(0, &:+)
+end
+
+def reject_negatives numbers
+  negatives = numbers.select {|n| n < 0}
+  raise "Negatives not allowed: #{negatives.join(", ")}" unless negatives.empty?
 end

@@ -44,4 +44,14 @@ describe StringCalculator do
   it "allows the delimiter to be specified" do
     "//;\n1;2".should evaluate_to(3)
   end
+
+  describe "with negative numbers" do
+    it "raises an exception" do
+      lambda{StringCalculator.calculate("1,-1")}.should raise_error("Negatives not allowed: -1")
+    end
+
+    it "includes all negative numbers in the message" do
+      lambda{StringCalculator.calculate("1,-1,-2,-3")}.should raise_error("Negatives not allowed: -1, -2, -3")
+    end
+  end
 end
