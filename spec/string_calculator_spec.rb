@@ -54,4 +54,12 @@ describe StringCalculator do
       lambda{StringCalculator.calculate("1,-1,-2,-3")}.should raise_error("Negatives not allowed: -1, -2, -3")
     end
   end
+
+  it "accepts numbers up to 1000" do
+    "999,1000".should evaluate_to(1999)
+  end
+
+  it "ignores numbers over 1000" do
+    "2,1001".should evaluate_to(2)
+  end
 end
