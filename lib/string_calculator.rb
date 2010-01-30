@@ -1,14 +1,14 @@
 class StringCalculator
-  def self.calculate input
-    sum(extract_numbers(values(input), delimiter_pattern(input)))
-  end
-
   class << self
+    def calculate input
+      sum(extract_numbers(values(input), delimiter_pattern(input)))
+    end
+
     private
 
     def delimiter_pattern input
       case input
-      when %r(\A//((\[.+\])+)$) then %r{(#{$1[1..-2].split("][").map{|str| Regexp.escape(str)}.join("|")})}
+      when %r(\A//((\[.+\])+)$) then multi_delimiter_regexp($1)
       when %r(\A//(.+)$) then $1
       else %r([,\n])
       end
@@ -34,6 +34,14 @@ class StringCalculator
 
     def ignore_over_1000 numbers
       numbers.reject {|n| n > 1000}
+    end
+    
+    def extract_delimiters string
+      string[1..-2].split "]["
+    end
+
+    def multi_delimiter_regexp delimiters
+      %r{(#{extract_delimiters(delimiters).map{|str| Regexp.escape(str)}.join("|")})}
     end
   end
 end
