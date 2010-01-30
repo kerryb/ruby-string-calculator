@@ -1,13 +1,13 @@
 class StringCalculator
   def self.calculate input
-    sum(extract_numbers(values(input), delimiter(input)))
+    sum(extract_numbers(values(input), delimiter_pattern(input)))
   end
 end
 
 private
 
-def delimiter input
-  input =~ %r(\A//(.)$) ? $1 : %r([,\n])
+def delimiter_pattern input
+  input =~ %r(\A//(.*)$) ? $1 : %r([,\n])
 end
 
 def values input

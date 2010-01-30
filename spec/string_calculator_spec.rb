@@ -45,6 +45,10 @@ describe StringCalculator do
     "//;\n1;2".should evaluate_to(3)
   end
 
+  it "allows a multiple-character delimiter" do
+    "//***\n1***2***3".should evaluate_to(6)
+  end
+
   describe "with negative numbers" do
     it "raises an exception" do
       lambda{StringCalculator.calculate("1,-1")}.should raise_error("Negatives not allowed: -1")
