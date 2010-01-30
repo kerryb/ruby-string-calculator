@@ -7,7 +7,7 @@ end
 private
 
 def extract_numbers input
-  input.split(",").map(&:to_i)
+  input.split(/[,\n]/).map(&:to_i)
 end
 
 def sum numbers
