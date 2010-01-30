@@ -15,7 +15,7 @@ Spec::Matchers.define :be_calculated_as do |expected|
 end
 
 describe StringCalculator do
-  it "calculates the sum of zero numbers as 0" do
+  it "calculates the sum of an empty string as 0" do
     "".should be_calculated_as(0)
   end
 
@@ -25,5 +25,9 @@ describe StringCalculator do
 
   it "calculates the sum of two numbers" do
     "1,2".should be_calculated_as(3)
+  end
+
+  it "calculates the sum of five numbers" do
+    "1,2,3,4,5".should be_calculated_as(15)
   end
 end
