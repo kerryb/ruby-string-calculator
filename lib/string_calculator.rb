@@ -6,8 +6,12 @@ end
 
 private
 
+def delimiter
+  %r([,\n])
+end
+
 def extract_numbers input
-  input.split(/[,\n]/).map(&:to_i)
+  input.split(delimiter).map(&:to_i)
 end
 
 def sum numbers
