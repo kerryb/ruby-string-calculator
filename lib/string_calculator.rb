@@ -7,11 +7,15 @@ end
 private
 
 def delimiter_pattern input
-  input =~ %r(\A//(.*)$) ? $1 : %r([,\n])
+  case input
+  when %r(\A//((\[.+\])+)$) then %r{(#{$1[1..-2].split("][").map{|str| Regexp.escape(str)}.join("|")})}
+  when %r(\A//(.+)$) then $1
+  else %r([,\n])
+  end
 end
 
 def values input
-  input =~ %r((\A//.*?)$) ? input.sub($1, '') : input
+  input =~ %r((\A//.+?)$) ? input.sub($1, '') : input
 end
 
 def extract_numbers input, delimiter

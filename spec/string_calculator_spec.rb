@@ -45,6 +45,14 @@ describe StringCalculator do
     "//;\n1;2".should evaluate_to(3)
   end
 
+  it "allows multiple delimiters to be specified" do
+    "//[x][y]\n1x2y3".should evaluate_to(6)
+  end
+
+  it "allows regexp special chars in delimiters" do
+    "//[*][(]\n1*2(3".should evaluate_to(6)
+  end
+
   it "allows a multiple-character delimiter" do
     "//***\n1***2***3".should evaluate_to(6)
   end
