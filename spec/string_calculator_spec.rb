@@ -40,4 +40,8 @@ describe StringCalculator do
   it "allows a mixture of comma and newline delimiters" do
     "1,2\n3".should evaluate_to(6)
   end
+
+  it "allows the delimiter to be specified" do
+    "//;\n1;2".should evaluate_to(3)
+  end
 end
